@@ -28,7 +28,7 @@ void render_frame(void) {
     vert_p->y = y;
     vert_p->z = 0.1f;
     vert_p->argb0 = 0x7fFFFFFF;
-    vert_p->argb1 = 0x7fF7f7f0;
+    vert_p->argb1 = 0xffffff00;
   }
 
   vert_p->flags = PVR_CMD_VERTEX_EOL;
@@ -45,21 +45,41 @@ void render_frame(void) {
   *((pvr_mod_hdr_t *)vert_p) = mod_hdr;
   pvr_dr_commit(vert_p);
   pvr_modifier_vol_t *modh_p = (pvr_modifier_vol_t *)pvr_dr_target(dr_state);
-  modh_p->flags = PVR_CMD_MODIFIER;
+  modh_p->flags = PVR_CMD_VERTEX_EOL;
   modh_p->ax = 200;
-  modh_p->ay = 200;
-  modh_p->az = 1;
-  modh_p->bx = 640 - 200;
+  modh_p->ay = 480 - 200;
+  modh_p->az = 1.0f;
+  modh_p->bx = 200;
   modh_p->by = 200;
-  modh_p->bz = 1;
+  modh_p->bz = 1.0f;
   modh_p->cx = 640 - 200;
   pvr_dr_commit(modh_p);
   modh_p = (pvr_modifier_vol_t *)pvr_dr_target(dr_state);
   pvr_modifier_vol_t *modh_p2 = (pvr_modifier_vol_t *)((int)modh_p - 32);
 
-  modh_p2->cy = 480 - 200;
-  modh_p2->cz = 1;
+  modh_p2->cy = 200;
+  modh_p2->cz = 1.0f;
   pvr_dr_commit(modh_p);
+
+
+
+  modh_p = (pvr_modifier_vol_t *)pvr_dr_target(dr_state);
+  modh_p->flags = PVR_CMD_VERTEX_EOL;
+  modh_p->ax = 200;
+  modh_p->ay = 480 - 200;
+  modh_p->az = 1.0f;
+  modh_p->bx = 640 - 200;
+  modh_p->by = 200;
+  modh_p->bz = 1.0f;
+  modh_p->cx = 640 - 200;
+  pvr_dr_commit(modh_p);
+  modh_p = (pvr_modifier_vol_t *)pvr_dr_target(dr_state);
+  modh_p2 = (pvr_modifier_vol_t *)((int)modh_p - 32);
+
+  modh_p2->cy = 480 - 200;
+  modh_p2->cz = 1.0f;
+  pvr_dr_commit(modh_p);
+
   pvr_dr_finish();
 
   // pvr_list_finish();
