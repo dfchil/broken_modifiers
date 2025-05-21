@@ -21,9 +21,16 @@ KOS_INIT_FLAGS(INIT_DEFAULT);
 #endif
 
 static pvr_init_params_t pvr_params = {
-    { PVR_BINSIZE_16, PVR_BINSIZE_0, PVR_BINSIZE_0, PVR_BINSIZE_0, PVR_BINSIZE_0 },
-    512 * 1024, 0, 0, 0, 0, 0
+    {PVR_BINSIZE_16, PVR_BINSIZE_16, PVR_BINSIZE_16, PVR_BINSIZE_16,
+     PVR_BINSIZE_0},
+    1024 * 1024, // Vertex buffer size
+    0,           // No DMA
+    0,           // Set horisontal FSAA
+    0,           // Translucent Autosort enabled.
+    1,           // Extra OPBs
+    0,           // No extra PTs
 };
+
 
 int main(__unused int argc, __unused char **argv) {
 #ifdef DEBUG
