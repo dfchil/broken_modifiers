@@ -1,7 +1,8 @@
 #include <dc/video.h>
-#include <drxlax/game/core.h>
 #include <drxlax/game/controller/rumble.h>
+#include <drxlax/game/core.h>
 #include <kos.h>
+
 
 #ifdef DCPROF
 #include "../profilers/dcprof/profiler.h"
@@ -21,23 +22,17 @@ KOS_INIT_FLAGS(INIT_DEFAULT);
 #endif
 
 static pvr_init_params_t pvr_params = {
-    {PVR_BINSIZE_16, PVR_BINSIZE_16, PVR_BINSIZE_16, PVR_BINSIZE_16,
-     PVR_BINSIZE_0},
-    1024 * 1024,   // Vertex buffer size
-    0,             // No DMA
-    0, // Set horisontal FSAA
-    0,             // Translucent Autosort enabled.
-    3,             // Extra OPBs
-    0,             // No extra PTs
+    { PVR_BINSIZE_16, PVR_BINSIZE_0, PVR_BINSIZE_0, PVR_BINSIZE_0, PVR_BINSIZE_0 },
+    512 * 1024, 0, 0, 0, 0, 0
 };
 
 int main(__unused int argc, __unused char **argv) {
 #ifdef DEBUG
   gdb_init();
 #endif
-  vid_set_mode(DM_640x480, PM_RGB888P);
-  pvr_set_bg_color(0.0, 0.0, 24.0f / 255.0f);
   pvr_init(&pvr_params);
+  vid_set_mode(DM_640x480, PM_RGB888P);
+  pvr_set_bg_color(0.0, 0.0, 64.0f / 255.0f);
   // rumble_queues_init();
   core_loop();
   // rumble_queues_shutdown();

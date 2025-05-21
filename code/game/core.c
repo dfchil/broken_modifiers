@@ -30,7 +30,7 @@ int check_c1_exit(void) {
 }
 
 void core_loop(void) {
-  while (1) {    
+  while (true) {    
     dc_ctrlrs_map_state();
     controller_state_t **cstates = get_ctrlr_states();
     for (int i = 0; i < MAPLE_PORT_COUNT; i++) {
