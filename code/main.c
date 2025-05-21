@@ -1,5 +1,4 @@
 #include <dc/video.h>
-#include <drxlax/game/controller/rumble.h>
 #include <drxlax/game/core.h>
 #include <kos.h>
 
@@ -33,9 +32,7 @@ int main(__unused int argc, __unused char **argv) {
   pvr_init(&pvr_params);
   vid_set_mode(DM_640x480, PM_RGB888P);
   pvr_set_bg_color(0.0, 0.0, 64.0f / 255.0f);
-  // rumble_queues_init();
   core_loop();
-  // rumble_queues_shutdown();
   pvr_shutdown();
   arch_exit();
 }

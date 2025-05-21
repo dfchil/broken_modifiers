@@ -1,6 +1,5 @@
 #include <arch/arch.h>
 #include <drxlax/game/controller/dreamcast.h>
-#include <drxlax/game/controller/rumble.h>
 #include <drxlax/render/core.h>
 #include <stdio.h>
 
